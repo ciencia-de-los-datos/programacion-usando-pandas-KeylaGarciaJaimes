@@ -22,7 +22,12 @@ def pregunta_01():
     40
 
     """
-    return
+    #contar el número de index
+    index = tbl0.index
+    numbers_of_rows = len(index)
+
+    return numbers_of_rows
+
 
 
 def pregunta_02():
@@ -33,7 +38,10 @@ def pregunta_02():
     4
 
     """
-    return
+    col_count = len(tbl0.columns)
+
+    return col_count
+
 
 
 def pregunta_03():
@@ -50,7 +58,11 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    col_c1 = tbl0._c1
+    resultado = col_c1.value_counts()
+    
+    return resultado.sort_index()
+
 
 
 def pregunta_04():
@@ -65,7 +77,9 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    media = tbl0.groupby('_c1')['_c2'].mean()
+   
+    return  media
 
 
 def pregunta_05():
@@ -82,7 +96,9 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
+    val_max = tbl0.groupby('_c1')['_c2'].max()
+   
+    return  val_max
 
 
 def pregunta_06():
@@ -94,7 +110,11 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
+    col_c4 = tbl1._c4.drop_duplicates().str.upper()
+    resultado = col_c4.tolist()
+    resultado.sort()
+
+    return print(resultado)
 
 
 def pregunta_07():
@@ -110,7 +130,9 @@ def pregunta_07():
     E    67
     Name: _c2, dtype: int64
     """
-    return
+    suma = tbl0.groupby('_c1')['_c2'].sum()
+
+    return suma
 
 
 def pregunta_08():
@@ -128,7 +150,9 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
+    suma = tbl0._c0 + tbl0._c2
+    tbl0['suma'] = suma
+    return tbl0
 
 
 def pregunta_09():
@@ -146,7 +170,11 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
+    tbl0['_c3'] = pd.to_datetime(tbl0._c3, format= '%Y-%M-%d')
+    tbl0['_c3'] = tbl0['_c3'].dt.strftime('%Y-%m-%d')
+    tbl0['year'] = pd.DatetimeIndex(tbl0['_c3']).year
+
+    return  tbl0
 
 
 def pregunta_10():
