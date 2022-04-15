@@ -113,9 +113,7 @@ def pregunta_06():
     col_c4 = tbl1._c4.drop_duplicates().str.upper()
     resultado = col_c4.tolist()
     resultado.sort()
-
-    return print(resultado)
-
+    return  resultado
 
 def pregunta_07():
     """
@@ -173,7 +171,6 @@ def pregunta_09():
     tbl0['_c3'] = pd.to_datetime(tbl0._c3, format= '%Y-%M-%d')
     tbl0['_c3'] = tbl0['_c3'].dt.strftime('%Y-%m-%d')
     tbl0['year'] = pd.DatetimeIndex(tbl0['_c3']).year
-
     return  tbl0
 
 
