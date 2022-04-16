@@ -168,10 +168,12 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    tbl0['_c3'] = pd.to_datetime(tbl0._c3, format= '%Y-%M-%d')
-    tbl0['_c3'] = tbl0['_c3'].dt.strftime('%Y-%m-%d')
-    tbl0['year'] = pd.DatetimeIndex(tbl0['_c3']).year
-    return  tbl0
+    datavalues =  tbl0.copy()
+    datavalues['_c3'] =  pd.to_datetime(datavalues._c3, format= '%Y-%M-%d')
+    datavalues['_c3'] = datavalues['_c3'].dt.strftime('%Y-%m-%d')
+    datavalues['year'] = pd.DatetimeIndex(datavalues['_c3']).year
+    
+    return datavalues
 
 
 def pregunta_10():
@@ -188,7 +190,13 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
+    datavalues=tbl0[['_c1','_c2']].rename(columns={"_c2": "lista"}).copy()
+
+    datavalues=pd.DataFrame(datavalues.groupby('_c1').agg(lambda x: str(sorted(((list(x))))).replace(",", ":").replace("[", "").replace("]", "").replace(" ", "")).reset_index())
+
+    datavalues=datavalues.rename(columns={"_c1": "_c0", "lista": "_c1"})
+
+    return datavalues
 
 
 def pregunta_11():
