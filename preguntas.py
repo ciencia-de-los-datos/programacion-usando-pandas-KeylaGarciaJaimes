@@ -172,6 +172,7 @@ def pregunta_09():
     datavalues['_c3'] =  pd.to_datetime(datavalues._c3, format= '%Y-%M-%d')
     datavalues['_c3'] = datavalues['_c3'].dt.strftime('%Y-%m-%d')
     datavalues['year'] = pd.DatetimeIndex(datavalues['_c3']).year
+    datavalues['year']=datavalues['year'].astype(object).where(datavalues['year'].notnull(), None).fillna('1999')
     
     return print(datavalues)
 
