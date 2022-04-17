@@ -173,7 +173,7 @@ def pregunta_09():
     datavalues['_c3'] = datavalues['_c3'].dt.strftime('%Y-%m-%d')
     datavalues['year'] = pd.DatetimeIndex(datavalues['_c3']).year
     
-    return datavalues
+    return print(datavalues)
 
 
 def pregunta_10():
