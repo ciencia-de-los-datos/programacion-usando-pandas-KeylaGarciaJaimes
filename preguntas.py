@@ -7,6 +7,10 @@ Este archivo contiene las preguntas que se van a realizar en el laboratorio.
 Utilice los archivos `tbl0.tsv`, `tbl1.tsv` y `tbl2.tsv`, para resolver las preguntas.
 
 """
+def extraer_año(fecha):
+    año = fecha.split('-')[0]
+    return año
+
 import pandas as pd
 
 tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
@@ -169,10 +173,7 @@ def pregunta_09():
 
     """
     datavalues =  tbl0.copy()
-    datavalues['_c3'] =  pd.to_datetime(datavalues._c3, format= '%Y-%M-%d')
-    datavalues['_c3'] = datavalues['_c3'].dt.strftime('%Y-%m-%d')
-    datavalues['year'] = pd.DatetimeIndex(datavalues['_c3']).year
-    datavalues['year']=datavalues['year'].astype(object).where(datavalues['year'].notnull(), None).fillna('1999')
+    datavalues['year'] =  datavalues['_c3'].apply(lambda x: extraer_año(x))
     
     return print(datavalues)
 
