@@ -195,6 +195,7 @@ def pregunta_10():
     datavalues=tbl0[['_c1','_c2']].rename(columns={"_c1": "_c0", "_c2": "_c1"}).copy()
 
     datavalues=pd.DataFrame(datavalues.groupby('_c0').agg(lambda x: str(sorted(((list(x))))).replace(",", ":").replace("[", "").replace("]", "").replace(" ", "")))
+    
     return datavalues
 
 
@@ -215,7 +216,17 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    return
+    dataprueba1=tbl1.groupby(['_c0'])
+
+
+    col2=[]
+    for i,j in dataprueba1:
+      lista=",".join(str(elemento) for elemento in sorted(dataprueba1.get_group(i)['_c4'].tolist()))
+      col2.append(lista)
+
+    unicosvalores=tbl1.groupby('_c0').agg(sum).reset_index()
+    unicosvalores['_c4']=col2
+    return unicosvalores
 
 
 def pregunta_12():
