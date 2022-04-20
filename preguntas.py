@@ -175,7 +175,7 @@ def pregunta_09():
     datavalues =  tbl0.copy()
     datavalues['year'] =  datavalues['_c3'].apply(lambda x: extraer_año(x))
     
-    return print(datavalues)
+    return datavalues
 
 
 def pregunta_10():
