@@ -244,7 +244,22 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
+    dataprueba2new=tbl2.copy()
+    dataprueba2new['lista']=tbl2["_c5a"] + ":" + tbl2["_c5b"].astype(str)
+
+    dataprueba2group=dataprueba2new.groupby(['_c0'])
+
+    col2=[]
+    for i,j in dataprueba2group:
+        lista=",".join(str(elemento) for elemento in sorted(dataprueba2group.get_group(i)['lista'].tolist()))
+        col2.append(lista)
+
+    unicosvaloresnew=tbl2.groupby('_c0').agg(sum).reset_index()
+
+    unicosvaloresnew['_c5b']=col2
+
+    return  print(unicosvaloresnew)
+
 
 
 def pregunta_13():
@@ -261,4 +276,10 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+        datamerge=pd.merge(
+    tbl0,
+    tbl2,
+    sort=True,
+    )
+
+    return datamerge.groupby(['_c1'])['_c5b'].sum()
