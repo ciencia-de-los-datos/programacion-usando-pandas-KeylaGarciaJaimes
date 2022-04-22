@@ -226,7 +226,7 @@ def pregunta_11():
 
     unicosvalores=tbl1.groupby('_c0').agg(sum).reset_index()
     unicosvalores['_c4']=col2
-    
+
     return unicosvalores
 
 
@@ -259,7 +259,7 @@ def pregunta_12():
 
     unicosvaloresnew['_c5b']=col2
 
-    return  print(unicosvaloresnew)
+    return  unicosvaloresnew
 
 
 
