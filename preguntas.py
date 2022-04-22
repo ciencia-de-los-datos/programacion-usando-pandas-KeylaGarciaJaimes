@@ -216,17 +216,6 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    dataprueba1=tbl1.groupby(['_c0'])
-
-
-    col2=[]
-    for i,j in dataprueba1:
-      lista=",".join(str(elemento) for elemento in sorted(dataprueba1.get_group(i)['_c4'].tolist()))
-      col2.append(lista)
-
-    unicosvalores=tbl1.groupby('_c0').agg(sum).reset_index()
-    unicosvalores['_c4']=col2
-    return unicosvalores
 
 
 def pregunta_12():
@@ -276,7 +265,7 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-        datamerge=pd.merge(
+    datamerge=pd.merge(
     tbl0,
     tbl2,
     sort=True,
