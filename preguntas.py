@@ -251,6 +251,7 @@ def pregunta_12():
     dataprueba2group=dataprueba2new.groupby(['_c0'])
 
     col2=[]
+
     for i,j in dataprueba2group:
         lista=",".join(str(elemento) for elemento in sorted(dataprueba2group.get_group(i)['lista'].tolist()))
         col2.append(lista)
@@ -259,8 +260,7 @@ def pregunta_12():
 
     unicosvaloresnew['_c5b']=col2
 
-    return  unicosvaloresnew
-
+    return  unicosvaloresnew.rename(columns={"_c5b": "_c5"})
 
 
 def pregunta_13():
