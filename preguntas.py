@@ -192,10 +192,10 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    datavalues=tbl0[['_c1','_c2']].rename(columns={"_c1": "_c0", "_c2": "_c1"}).copy()
+    datavalues = tbl0[['_c1', '_c2']]
 
-    datavalues=pd.DataFrame(datavalues.groupby('_c0').agg(lambda x: str(sorted(((list(x))))).replace(",", ":").replace("[", "").replace("]", "").replace(" ", "")))
-    
+    datavalues=pd.DataFrame(datavalues.groupby('_c1').agg(lambda x: str(sorted(((list(x))))).replace(",", ":").replace("[", "").replace("]", "").replace(" ", "")))
+
     return datavalues
 
 
